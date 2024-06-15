@@ -72,7 +72,7 @@ if ($result->num_rows > 0) {
             border-radius: 4px;
             font-size: 16px;
         }
-        input[type="submit"] {
+        input[type="submit"], .back-button {
             padding: 10px;
             background-color: #28a745;
             color: white;
@@ -80,8 +80,9 @@ if ($result->num_rows > 0) {
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
         }
-        input[type="submit"]:hover {
+        input[type="submit"]:hover, .back-button:hover {
             background-color: #218838;
         }
         .success-message {
@@ -92,6 +93,14 @@ if ($result->num_rows > 0) {
             border-radius: 4px;
             margin-bottom: 20px;
             text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                margin: 0 10px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -117,6 +126,7 @@ if ($result->num_rows > 0) {
             
             <input type="submit" value="Submit">
         </form>
+        <button class="back-button" onclick="window.location.href='index.php'">Back</button>
     </div>
 </body>
 </html>

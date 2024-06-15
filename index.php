@@ -44,12 +44,16 @@ if (isset($_POST['lga_id'])) {
         tr:hover {
             background-color: #f1f1f1;
         }
-        select, input[type="submit"] {
+        select, input[type="submit"], button {
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
+        }
+        button {
+            background-color: #f2f2f2;
+            cursor: pointer;
         }
     </style>';
     
@@ -73,25 +77,28 @@ if (isset($_POST['lga_id'])) {
         echo "<tr><td>" . htmlspecialchars($row['party_abbreviation']) . "</td><td>" . htmlspecialchars($row['total_score']) . "</td></tr>";
     }
     echo "</table>";
+    echo '<button onclick="window.location.href=\'index.php\'">Back</button>';
+    echo '<button onclick="window.location.href=\'new_polling_unit.php\'">upload new polling unit</button>';
     echo '</div>';
     
     $stmt->close();
 } else {
     echo '<div class="container">';
+    
     echo "<form method='POST' action=''>";
     echo "<label for='lga_id'>Select LGA:</label>";
     echo "<select name='lga_id'>";
-    
     $sql = "SELECT lga_id, lga_name FROM lga WHERE state_id = 25";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
         echo "<option value='" . htmlspecialchars($row['lga_id']) . "'>" . htmlspecialchars($row['lga_name']) . "</option>";
     }
-    
     echo "</select>";
     echo "<input type='submit' value='Show Results'>";
     echo "</form>";
     echo '</div>';
+    
+    echo '<button onclick="window.location.href=\'new_polling_unit.php\'">upload new unit</button>';
 }
 
 $conn->close();
